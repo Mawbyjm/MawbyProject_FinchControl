@@ -13,40 +13,37 @@ namespace Project_FinchControl
     //              opening and closing screens, and the menu
     // Application Type: Console
     // Author: Mawby, John
-    // Dated Created: 1/22/2020
-    // Last Modified: 1/25/2020
+    // Dated Created: 2/18/2021
+    // Last Modified: 2/21/2021
     //
     // **************************************************
 
     class Program
     {
-        /// <summary>
+       
         /// first method run when the app starts up
-        /// </summary>
-        /// <param name="args"></param>
+     
         static void Main(string[] args)
         {
             SetTheme();
-
             DisplayWelcomeScreen();
             DisplayMenuScreen();
             DisplayClosingScreen();
         }
 
-        /// <summary>
         /// setup the console theme
-        /// </summary>
+
         static void SetTheme()
         {
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.BackgroundColor = ConsoleColor.White;
         }
 
-        /// <summary>
+
         /// *****************************************************************
         /// *                     Main Menu                                 *
         /// *****************************************************************
-        /// </summary>
+
         static void DisplayMenuScreen()
         {
             Console.CursorVisible = true;
@@ -60,9 +57,9 @@ namespace Project_FinchControl
             {
                 DisplayScreenHeader("Main Menu");
 
-                //
+                
                 // get user menu choice
-                //
+                
                 Console.WriteLine("\ta) Connect Finch Robot");
                 Console.WriteLine("\tb) Talent Show");
                 Console.WriteLine("\tc) Data Recorder");
@@ -73,9 +70,8 @@ namespace Project_FinchControl
                 Console.Write("\t\tEnter Choice:");
                 menuChoice = Console.ReadLine().ToLower();
 
-                //
                 // process user menu choice
-                //
+                
                 switch (menuChoice)
                 {
                     case "a":
@@ -119,11 +115,11 @@ namespace Project_FinchControl
 
         #region TALENT SHOW
 
-        /// <summary>
+
         /// *****************************************************************
         /// *                     Talent Show Menu                          *
         /// *****************************************************************
-        /// </summary>
+
         static void TalentShowDisplayMenuScreen(Finch finchRobot)
         {
             Console.CursorVisible = true;
@@ -135,20 +131,18 @@ namespace Project_FinchControl
             {
                 DisplayScreenHeader("Talent Show Menu");
 
-                //
                 // get user menu choice
-                //
+                
                 Console.WriteLine("\ta) Light and Sound");
-                Console.WriteLine("\tb) ");
-                Console.WriteLine("\tc) ");
-                Console.WriteLine("\td) ");
-                Console.WriteLine("\tq) Main Menu");
+                Console.WriteLine("\tb) Dance");
+                Console.WriteLine("\tc) Mixing It Up");
+                //Console.WriteLine("\td) ");
+                Console.WriteLine("\tq) Return to Main Menu");
                 Console.Write("\t\tEnter Choice:");
                 menuChoice = Console.ReadLine().ToLower();
 
-                //
                 // process user menu choice
-                //
+                
                 switch (menuChoice)
                 {
                     case "a":
@@ -156,16 +150,16 @@ namespace Project_FinchControl
                         break;
 
                     case "b":
-
+                        Dance (finchRobot);
                         break;
 
                     case "c":
-
+                        MixingItUp(finchRobot);
                         break;
 
-                    case "d":
+                    //case "d":
 
-                        break;
+                       // break;
 
                     case "q":
                         quitTalentShowMenu = true;
@@ -181,12 +175,10 @@ namespace Project_FinchControl
             } while (!quitTalentShowMenu);
         }
 
-        /// <summary>
         /// *****************************************************************
         /// *               Talent Show > Light and Sound                   *
         /// *****************************************************************
-        /// </summary>
-        /// <param name="finchRobot">finch robot object</param>
+    
         static void TalentShowDisplayLightAndSound(Finch finchRobot)
         {
             Console.CursorVisible = false;
@@ -204,17 +196,33 @@ namespace Project_FinchControl
 
             DisplayMenuPrompt("Talent Show Menu");
         }
+        
+        static void Dance (Finch finchrobot)
+        {
+            Console.CursorVisible = false;
+
+            DisplayScreenHeader("Dance");
+
+            Console.WriteLine("The Finch will now begin to dance!");
+
+            DisplayContinuePrompt();
+            Console.WriteLine();
+
+        }
+
+        static void MixingItUp(Finch finchrobot)
+        {
+
+        }
 
         #endregion
 
         #region FINCH ROBOT MANAGEMENT
 
-        /// <summary>
         /// *****************************************************************
         /// *               Disconnect the Finch Robot                      *
         /// *****************************************************************
-        /// </summary>
-        /// <param name="finchRobot">finch robot object</param>
+
         static void DisplayDisconnectFinchRobot(Finch finchRobot)
         {
             Console.CursorVisible = false;
@@ -231,13 +239,10 @@ namespace Project_FinchControl
             DisplayMenuPrompt("Main Menu");
         }
 
-        /// <summary>
         /// *****************************************************************
         /// *                  Connect the Finch Robot                      *
         /// *****************************************************************
-        /// </summary>
-        /// <param name="finchRobot">finch robot object</param>
-        /// <returns>notify if the robot is connected</returns>
+
         static bool DisplayConnectFinchRobot(Finch finchRobot)
         {
             Console.CursorVisible = false;
@@ -255,9 +260,8 @@ namespace Project_FinchControl
 
             DisplayMenuPrompt("Main Menu");
 
-            //
             // reset finch robot
-            //
+            
             finchRobot.setLED(0, 0, 0);
             finchRobot.noteOff();
 
@@ -268,11 +272,11 @@ namespace Project_FinchControl
 
         #region USER INTERFACE
 
-        /// <summary>
+
         /// *****************************************************************
         /// *                     Welcome Screen                            *
         /// *****************************************************************
-        /// </summary>
+
         static void DisplayWelcomeScreen()
         {
             Console.CursorVisible = false;
@@ -281,15 +285,16 @@ namespace Project_FinchControl
             Console.WriteLine();
             Console.WriteLine("\t\tFinch Control");
             Console.WriteLine();
+            Console.WriteLine("\tThis application will allow you to control various finctions of the Finch Robot.");
 
             DisplayContinuePrompt();
         }
 
-        /// <summary>
+
         /// *****************************************************************
         /// *                     Closing Screen                            *
         /// *****************************************************************
-        /// </summary>
+
         static void DisplayClosingScreen()
         {
             Console.CursorVisible = false;
@@ -302,9 +307,9 @@ namespace Project_FinchControl
             DisplayContinuePrompt();
         }
 
-        /// <summary>
+
         /// display continue prompt
-        /// </summary>
+
         static void DisplayContinuePrompt()
         {
             Console.WriteLine();
@@ -312,9 +317,8 @@ namespace Project_FinchControl
             Console.ReadKey();
         }
 
-        /// <summary>
         /// display menu prompt
-        /// </summary>
+
         static void DisplayMenuPrompt(string menuName)
         {
             Console.WriteLine();
@@ -322,9 +326,8 @@ namespace Project_FinchControl
             Console.ReadKey();
         }
 
-        /// <summary>
         /// display screen header
-        /// </summary>
+
         static void DisplayScreenHeader(string headerText)
         {
             Console.Clear();

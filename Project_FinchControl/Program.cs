@@ -12,7 +12,7 @@ namespace Project_FinchControl
     // Description: Starter solution with the helper methods,
     //              opening and closing screens, and the menu
     // Application Type: Console
-    // Author: Velis, John
+    // Author: Mawby, John
     // Dated Created: 1/22/2020
     // Last Modified: 1/25/2020
     //

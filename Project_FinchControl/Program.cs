@@ -20,9 +20,9 @@ namespace Project_FinchControl
 
     class Program
     {
-       
+
         /// first method run when the app starts up
-     
+
         static void Main(string[] args)
         {
             SetTheme();
@@ -44,6 +44,7 @@ namespace Project_FinchControl
         /// *                     Main Menu                                 *
         /// *****************************************************************
 
+
         static void DisplayMenuScreen()
         {
             Console.CursorVisible = true;
@@ -57,9 +58,9 @@ namespace Project_FinchControl
             {
                 DisplayScreenHeader("Main Menu");
 
-                
+
                 // get user menu choice
-                
+
                 Console.WriteLine("\ta) Connect Finch Robot");
                 Console.WriteLine("\tb) Talent Show");
                 Console.WriteLine("\tc) Data Recorder");
@@ -71,7 +72,7 @@ namespace Project_FinchControl
                 menuChoice = Console.ReadLine().ToLower();
 
                 // process user menu choice
-                
+
                 switch (menuChoice)
                 {
                     case "a":
@@ -132,34 +133,33 @@ namespace Project_FinchControl
                 DisplayScreenHeader("Talent Show ");
 
                 // get user menu choice
-                
+
                 Console.WriteLine("\ta) Light and Sound");
                 Console.WriteLine("\tb) Dance");
                 Console.WriteLine("\tc) Mixing It Up");
-                //Console.WriteLine("\td) ");
                 Console.WriteLine("\tq) Return to Main Menu");
                 Console.Write("\t\tEnter Choice:");
                 menuChoice = Console.ReadLine().ToLower();
 
                 // process user menu choice
-                
+
                 switch (menuChoice)
                 {
                     case "a":
-                        TalentShowDisplayLightAndSound (finchRobot);
+                        TalentShowDisplayLightAndSound(finchRobot);
                         break;
 
                     case "b":
-                        TalentShowDisplayDance (finchRobot);
+                        TalentShowDisplayDance(finchRobot);
                         break;
 
                     case "c":
-                        TalentShowDisplayMixingItUp (finchRobot);
+                        TalentShowDisplayMixingItUp(finchRobot);
                         break;
 
-                    //case "d":
+                    case "d":
 
-                       // break;
+                        break;
 
                     case "q":
                         quitTalentShowMenu = true;
@@ -178,7 +178,7 @@ namespace Project_FinchControl
         /// *****************************************************************
         /// *               Talent Show > Light and Sound                   *
         /// *****************************************************************
-    
+
         static void TalentShowDisplayLightAndSound(Finch finchRobot)
         {
             Console.CursorVisible = false;
@@ -191,7 +191,7 @@ namespace Project_FinchControl
             for (int lightSoundLevel = 0; lightSoundLevel < 200; lightSoundLevel = lightSoundLevel + 10)
             {
                 finchRobot.setLED(lightSoundLevel, lightSoundLevel, lightSoundLevel);
-                finchRobot.noteOn(lightSoundLevel * 100);
+                finchRobot.noteOn(lightSoundLevel * 75);
                 finchRobot.setLED(255, 0, 0);
                 finchRobot.wait(30);
                 finchRobot.setLED(0, 255, 0);
@@ -203,7 +203,111 @@ namespace Project_FinchControl
             finchRobot.setLED(0, 0, 0);
             finchRobot.noteOff();
 
-            DisplayMenuPrompt("Talent Show ");
+            DisplayContinuePrompt();
+            Console.Clear();
+
+            //Validate user input with a feedback message: string value
+            // use "or" operator in an if else statment
+            
+            bool validRespons;
+            string userRespons;
+
+            do
+            {
+                Console.WriteLine();
+                Console.WriteLine("Do you want to hear the Finch play a song?");
+                Console.WriteLine("Respond with a for 'yes' or for 'no'.");
+
+                userRespons = Console.ReadLine();
+
+                Console.WriteLine();
+
+                if (userRespons == "yes" || userRespons == "no")
+                {
+                    validRespons = true;
+                    Console.WriteLine("Your response was: {0}", userRespons);
+                }
+
+                else
+                {
+                    validRespons = false;
+                    Console.WriteLine();
+                    Console.WriteLine("Please enter a yes or no.");
+                }
+
+            } while (!validRespons);
+
+            if (userRespons == "yes")
+            {
+                Console.WriteLine();
+                Console.WriteLine("The Finch will begin to play Pachebel.");
+
+                DisplayContinuePrompt();
+
+                finchRobot.noteOn(1047);
+                finchRobot.wait(500);
+                finchRobot.noteOn(784);
+                finchRobot.wait(500);
+                finchRobot.noteOn(880);
+                finchRobot.wait(500);
+                finchRobot.noteOn(659);
+                finchRobot.wait(500);
+                finchRobot.noteOn(698);
+                finchRobot.wait(500);
+                finchRobot.noteOn(523);
+                finchRobot.wait(500);
+                finchRobot.noteOn(698);
+                finchRobot.wait(500);
+                finchRobot.noteOn(784);
+                finchRobot.wait(500);
+                
+                finchRobot.noteOn(1047);
+                finchRobot.wait(500);
+                finchRobot.noteOn(784);
+                finchRobot.wait(500);
+                finchRobot.noteOn(880);
+                finchRobot.wait(500);
+                finchRobot.noteOn(659);
+                finchRobot.wait(500);
+                finchRobot.noteOn(698);
+                finchRobot.wait(500);
+                finchRobot.noteOn(523);
+                finchRobot.wait(500);
+                finchRobot.noteOn(698);
+                finchRobot.wait(500);
+                finchRobot.noteOn(784);
+                finchRobot.wait(500);
+
+                finchRobot.noteOn(1047);
+                finchRobot.wait(500);
+                finchRobot.noteOn(784);
+                finchRobot.wait(500);
+                finchRobot.noteOn(880);
+                finchRobot.wait(500);
+                finchRobot.noteOn(659);
+                finchRobot.wait(500);
+                finchRobot.noteOn(698);
+                finchRobot.wait(500);
+                finchRobot.noteOn(523);
+                finchRobot.wait(500);
+                finchRobot.noteOn(698);
+                finchRobot.wait(500);
+                finchRobot.noteOn(784);
+                finchRobot.wait(800);
+
+                finchRobot.noteOff();
+
+                DisplayMenuPrompt("Talent Show ");
+            }
+
+            else if (userRespons == "no")
+            { 
+                Console.WriteLine();
+                Console.WriteLine("I am sorry you did not want to hear The Finch sing.");
+                
+                DisplayMenuPrompt("Talent Show ");
+            }
+            
         }
         
         static void TalentShowDisplayDance (Finch finchRobot)

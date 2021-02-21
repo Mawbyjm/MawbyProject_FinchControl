@@ -52,6 +52,8 @@ namespace Project_FinchControl
             bool quitApplication = false;
             string menuChoice;
 
+            //Declare and instantiate an object
+
             Finch finchRobot = new Finch();
 
             do
@@ -78,6 +80,7 @@ namespace Project_FinchControl
                     case "a":
                         DisplayConnectFinchRobot(finchRobot);
                         break;
+                                // method that returns a value
 
                     case "b":
                         TalentShowDisplayMenuScreen(finchRobot);
@@ -112,6 +115,7 @@ namespace Project_FinchControl
                 }
 
             } while (!quitApplication);
+
         }
 
         #region TALENT SHOW
@@ -206,36 +210,39 @@ namespace Project_FinchControl
             DisplayContinuePrompt();
             Console.Clear();
 
+            #region Play Song
+
             //Validate user input with a feedback message: string value
             // use "or" operator in an if else statment
-            
-            bool validRespons;
+
             string userRespons;
+            bool validRespons;
 
             do
-            {
-                Console.WriteLine();
-                Console.WriteLine("Do you want to hear the Finch play a song?");
-                Console.WriteLine("Respond with a for 'yes' or for 'no'.");
-
-                userRespons = Console.ReadLine();
-
-                Console.WriteLine();
-
-                if (userRespons == "yes" || userRespons == "no")
                 {
-                    validRespons = true;
-                    Console.WriteLine("Your response was: {0}", userRespons);
-                }
-
-                else
-                {
-                    validRespons = false;
                     Console.WriteLine();
-                    Console.WriteLine("Please enter a yes or no.");
-                }
+                    Console.WriteLine("Do you want to hear the Finch play a song?");
+                    Console.WriteLine("Respond with a for 'yes' or for 'no'.");
 
-            } while (!validRespons);
+                    userRespons = Console.ReadLine();
+
+                    Console.WriteLine();
+
+                    if (userRespons == "yes" || userRespons == "no")
+                    {
+                        validRespons = true;
+                        Console.WriteLine("Your response was: {0}", userRespons);
+                    }
+
+                    else
+                    {
+                        validRespons = false;
+                        Console.WriteLine();
+                        Console.WriteLine("Please enter a yes or no.");
+                    }
+
+                } while (!validRespons);
+            
 
             if (userRespons == "yes")
             {
@@ -307,9 +314,9 @@ namespace Project_FinchControl
                 
                 DisplayMenuPrompt("Talent Show ");
             }
-            
+            #endregion
         }
-        
+
         static void TalentShowDisplayDance (Finch finchRobot)
         {
             Console.CursorVisible = false;
@@ -453,7 +460,7 @@ namespace Project_FinchControl
 
         #endregion
 
-        #region FINCH ROBOT MANAGEMENT
+        #region FINCH ROBOT MANAGEMENT (connect and disconnect)
 
         /// *****************************************************************
         /// *               Disconnect the Finch Robot                      *
@@ -512,6 +519,8 @@ namespace Project_FinchControl
         /// *****************************************************************
         /// *                     Welcome Screen                            *
         /// *****************************************************************
+
+        // Methods that DO NOT require arguments
 
         static void DisplayWelcomeScreen()
         {

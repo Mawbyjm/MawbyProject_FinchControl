@@ -468,7 +468,6 @@ namespace Project_FinchControl
             int numberOfDataPoints = 0;
             double dataPointFrequency = 0;
             double[] temperatures = null;
-            double[] temperaturesF = null;
 
             Console.CursorVisible = true;
 
@@ -506,7 +505,7 @@ namespace Project_FinchControl
                         break;
 
                     case "d":
-                        DataRecorderDisplayShowData(temperatures, temperaturesF);
+                        DataRecorderDisplayShowData(temperatures);
                         break;
 
                     case "q":
@@ -523,7 +522,9 @@ namespace Project_FinchControl
             } while (!quitMenu);
         }
 
-        static void DataRecorderDisplayShowData(double[] temperatures, double[] temperaturesF)
+
+        // display temps to console
+        static void DataRecorderDisplayShowData(double[] temperatures)
         {
             DisplayScreenHeader("Show Data");
 
@@ -532,39 +533,26 @@ namespace Project_FinchControl
             Console.WriteLine();
             Console.WriteLine();
 
-            // DataRecorderConvertCelsiusToFahrenheit(temperaturesF);
-
-            //Convert C to F
-
-
-           // DisplayDataRecorderConvertCelsiusToFahrenheit(temperatures);
+            DisplayDataRecorderConvertCelsiusToFahrenheit(temperatures);
 
             DisplayContinuePrompt();
         }
-        /*
-        //convert C to F
-        static double[] DataRecorderConvertCelsiusToFahrenheit(int numberOfDataPoints, double[] temperatures)
+
+        //convert C to F and display F temps
+        static void DisplayDataRecorderConvertCelsiusToFahrenheit(double[] temperatures)
         {
-            double[] temperaturesF;
-            //= new double[numberOfDataPoints];
 
-            temperaturesF = temperatures;
-
-            return temperaturesF;
-        }
-        */
-
-        //display F temps
-        static void DisplayDataRecorderConvertCelsiusToFahrenheit(double[] temperatures, double[] temperaturesF)
-        {
-            temperaturesF = temperatures;
-
-            for (int i = 0; i < temperaturesF.Length; i++)
+            //convert C to F
+            // First multiple C by 1.8 then add 32
+            int i;
+            for (i = 0; i < temperatures.Length; i++)
             {
-
+                temperatures[i] *= 1.8;
+                temperatures[i] += 32;
             }
 
             //display table headers
+
             Console.WriteLine(
                 "Recording #".PadLeft(15) +
                 "Temp (°F)".PadLeft(15)
@@ -576,19 +564,34 @@ namespace Project_FinchControl
 
             //display table data
 
-            for (int index = 0; index < temperaturesF.Length; index++)
+            for (int index = 0; index < temperatures.Length; index++)
             {
                 Console.WriteLine(
                     (index + 1).ToString().PadLeft(15) +
-                    temperaturesF[index].ToString("n2").PadLeft(15)
+                    temperatures[index].ToString("n2").PadLeft(15)
                     );
             }
+
+            double sum = 0;
+            double average = 0;
+            int inter;
+
+            for (inter = 0; inter < temperatures.Length; inter++)
+            {
+                sum = sum + temperatures[inter];
+            }
+
+            average = sum / inter;
+
+            Console.WriteLine();
+            Console.WriteLine("The average temperature is: " + average.ToString("n2") + " °F");
         }
 
-        //displau C temps
+        //display C temps
         static void DataRecorderDisplayTable(double[] temperatures)
         {
             //display table headers
+
             Console.WriteLine(
                 "Recording #".PadLeft(15) +
                 "Temp (°C)".PadLeft(15)
@@ -607,7 +610,19 @@ namespace Project_FinchControl
                     temperatures[index].ToString("n2").PadLeft(15)
                     );
             }
+            double sum = 0;
+            double average = 0;
+            int inter;
 
+            for (inter = 0; inter < temperatures.Length; inter++)
+            {
+                sum = sum + temperatures[inter];
+            }
+
+            average = sum / inter;
+
+            Console.WriteLine();
+            Console.WriteLine("The average temperature is: " + average.ToString("n2") + " °C");
         }
 
         //get C temps from user
@@ -638,12 +653,13 @@ namespace Project_FinchControl
             Console.WriteLine("\tTable of Temperatures");
             Console.WriteLine();
             DataRecorderDisplayTable(temperatures);
-
+           
             DisplayContinuePrompt();
 
             return temperatures;
         }
 
+        //get frequency
         static double DataRecorderDisplayGetDataPointFrequency()
         {
             double dataPointFrequency;
@@ -681,6 +697,7 @@ namespace Project_FinchControl
             return dataPointFrequency;
         }
 
+        //get number of data points
         static int DataRecorderDisplayGetNumberOfDataPoints()
         {
             int numberOfDataPoints;

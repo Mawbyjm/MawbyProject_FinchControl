@@ -541,7 +541,6 @@ namespace Project_FinchControl
         //convert C to F and display F temps
         static void DisplayDataRecorderConvertCelsiusToFahrenheit(double[] temperatures)
         {
-
             //convert C to F
             // First multiple C by 1.8 then add 32
             int i;
@@ -585,6 +584,7 @@ namespace Project_FinchControl
 
             Console.WriteLine();
             Console.WriteLine("The average temperature is: " + average.ToString("n2") + " °F");
+
         }
 
         //display C temps
@@ -684,7 +684,7 @@ namespace Project_FinchControl
                 if (!validResponse)
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Please enter an interger (1, 5, 12).");
+                    Console.WriteLine("Please enter a double (0.5, 1.0, 2.3).");
 
                 }
 

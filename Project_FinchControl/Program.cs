@@ -13,8 +13,8 @@ namespace Project_FinchControl
     //              opening and closing screens, and the menu
     // Application Type: Console
     // Author: Mawby, John
-    // Dated Created: 2/18/2021
-    // Last Modified: 2/21/2021
+    // Dated Created: 02/18/2021
+    // Last Modified: 03/04/2021
     //
     // **************************************************
 
@@ -736,7 +736,7 @@ namespace Project_FinchControl
 
         #endregion
 
-        #region LIGHT ALARM SYSTEM
+        #region TEMPERATURE AND LIGHT ALARM SYSTEM
 
         static void LightAlarmDisplayMenuScreen(Finch finchRobot)
         {
